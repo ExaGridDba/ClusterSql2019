@@ -1,0 +1,1 @@
+﻿Uninstall-AzureRm -Confirm:$true

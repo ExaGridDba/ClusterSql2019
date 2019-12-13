@@ -1,0 +1,1 @@
+﻿$CRED = Get-Credential
