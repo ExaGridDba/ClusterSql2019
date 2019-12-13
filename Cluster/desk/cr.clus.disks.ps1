@@ -1,5 +1,5 @@
 ﻿$DISK = New-AzDiskConfig `
-    -Location EastUS `
+    -Location $location `
     -CreateOption Empty `
     -SkuName Standard_LRS `
     -DiskSizeGB 32
@@ -10,7 +10,7 @@ foreach ($nn in 1,2)
     {
         $diskname = 'node{0}-disk{1}'-f $nn,$dn
         New-AzDisk `
-            -ResourceGroupName w19 `
+            -ResourceGroupName $resourcegroup `
             -DiskName $diskname `
             -Disk $DISK
     }

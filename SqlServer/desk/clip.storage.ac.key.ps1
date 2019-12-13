@@ -1,5 +1,5 @@
 ﻿( ( Get-AzStorageAccountKey `
-    -ResourceGroupName w19 `
+    -ResourceGroupName $resourcegroup `
     -Name witns ) `
     | Where-Object {$_.KeyName -eq "key1"} `
 ).Value | Set-Clipboard

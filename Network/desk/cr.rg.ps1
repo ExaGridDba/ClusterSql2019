@@ -1,3 +1,3 @@
 ﻿New-AzResourceGroup `
-    -Name w19 `
-    -Location EastUS
+    -Name $resourcegroup `
+    -Location $location

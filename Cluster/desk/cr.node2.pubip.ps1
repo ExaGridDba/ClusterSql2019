@@ -1,5 +1,5 @@
 ﻿New-AzPublicIpAddress `
     -Name node2-pubip `
-    -ResourceGroupName w19 `
+    -ResourceGroupName $resourcegroup `
     -AllocationMethod Dynamic `
-    -Location EastUS
+    -Location $location

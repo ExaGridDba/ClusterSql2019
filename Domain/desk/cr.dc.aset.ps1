@@ -1,6 +1,6 @@
 ﻿New-AzAvailabilitySet `
-    -ResourceGroupName w19 `
+    -ResourceGroupName $resourcegroup `
     -Name dc-aset `
     -PlatformFaultDomainCount 2 `
-    -Location EastUS `
+    -Location $location `
     -Sku Aligned

@@ -1,6 +1,6 @@
 ﻿$nodename = 'aesk'
 $ASET = Get-AzAvailabilitySet `
-    -ResourceGroupName w19 `
+    -ResourceGroupName $resourcegroup `
     -Name clus-aset
 
 $VM = New-AzVMConfig `
@@ -21,7 +21,7 @@ $VM | Set-AzVMOperatingSystem `
     -EnableAutoUpdate
 
 $NIC1 = Get-AzNetworkInterface `
-    -ResourceGroupName w19 `
+    -ResourceGroupName $resourcegroup `
     -Name ('{0}-nic1' -f $nodename)
 $VM | Add-AzVMNetworkInterface `
     -Primary `
@@ -36,8 +36,8 @@ $VM | Set-AzVMSourceImage `
 $VM | Set-AzVMBootDiagnostic `
     -Disable
 
-New-AzVM -ResourceGroupName w19 `
-    -Location EastUS `
+New-AzVM -ResourceGroupName $resourcegroup `
+    -Location $location `
     -AsJob `
     -VM $VM
 

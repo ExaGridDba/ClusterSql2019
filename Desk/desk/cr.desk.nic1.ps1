@@ -1,7 +1,7 @@
 ﻿$nodename = 'aesk'
 $VN = Get-AzVirtualNetwork `
     -Name vnet `
-    -ResourceGroupName w19
+    -ResourceGroupName $resourcegroup
 
 $SUB = Get-AzVirtualNetworkSubnetConfig `
     -Name sub1 `
@@ -9,7 +9,7 @@ $SUB = Get-AzVirtualNetworkSubnetConfig `
 
 $PUBIP = Get-AzPublicIpAddress `
     -Name ('{0}-pubip' -f $nodename) `
-    -ResourceGroupName w19
+    -ResourceGroupName $resourcegroup
 
 $IP = New-AzNetworkInterfaceIpConfig `
     -Name ('{0}-nic1' -f $nodename) `
@@ -18,13 +18,13 @@ $IP = New-AzNetworkInterfaceIpConfig `
     -PublicIpAddress $PUBIP
 $NIC = New-AzNetworkInterface `
     -Name (('{0}-nic1' -f $nodename)) `
-    -ResourceGroupName w19 `
-    -Location EastUS `
+    -ResourceGroupName $resourcegroup `
+    -Location $location `
     -IpConfiguration $IP 
 
 $SG = Get-AzNetworkSecurityGroup `
     -Name pub-sg `
-    -ResourceGroupName w19 
+    -ResourceGroupName $resourcegroup 
 
 $NIC.NetworkSecurityGroup = $SG
 

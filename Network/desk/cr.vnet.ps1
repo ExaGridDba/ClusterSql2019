@@ -1,6 +1,6 @@
 ﻿$VN = New-AzVirtualNetwork `
-    -ResourceGroupName w19 `
-    -Location EastUS `
+    -ResourceGroupName $resourcegroup `
+    -Location $location `
     -Name vnet `
     -AddressPrefix 10.0.0.0/8
 

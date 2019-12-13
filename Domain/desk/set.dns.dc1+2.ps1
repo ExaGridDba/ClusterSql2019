@@ -1,5 +1,5 @@
 ﻿$VN = Get-AzVirtualNetwork `
-  -ResourceGroupName w19 `
+  -ResourceGroupName $resourcegroup `
   -Name vnet 
 
 $VN.DhcpOptions.DnsServers = `

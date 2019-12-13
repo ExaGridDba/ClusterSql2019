@@ -1,5 +1,5 @@
 ﻿$ASET = Get-AzAvailabilitySet `
-    -ResourceGroupName w19 `
+    -ResourceGroupName $resourcegroup `
     -Name dc-aset
 
 $VM = New-AzVMConfig `
@@ -20,14 +20,14 @@ $VM | Set-AzVMOperatingSystem `
     -EnableAutoUpdate
 
 $NIC1 = Get-AzNetworkInterface `
-    -ResourceGroupName w19 `
+    -ResourceGroupName $resourcegroup `
     -Name dc2-nic1
 $VM | Add-AzVMNetworkInterface `
     -Primary `
     -Id $NIC1.id
 
 $NIC2 = Get-AzNetworkInterface `
-    -ResourceGroupName w19 `
+    -ResourceGroupName $resourcegroup `
     -Name dc2-nic2
 $VM | Add-AzVMNetworkInterface `
     -Id $NIC2.id
@@ -41,7 +41,7 @@ $VM | Set-AzVMSourceImage `
 $VM | Set-AzVMBootDiagnostic `
     -Disable
 
-New-AzVM -ResourceGroupName w19 `
+New-AzVM -ResourceGroupName $resourcegroup `
     -AsJob `
-    -Location EastUS `
+    -Location $location `
     -VM $VM

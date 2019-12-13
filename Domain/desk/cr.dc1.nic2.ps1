@@ -1,6 +1,6 @@
 ﻿$VN = Get-AzVirtualNetwork `
     -Name vnet `
-    -ResourceGroupName w19
+    -ResourceGroupName $resourcegroup
 
 $SUB = Get-AzVirtualNetworkSubnetConfig `
     -Name sub2 `
@@ -13,13 +13,13 @@ $IP = New-AzNetworkInterfaceIpConfig `
     -Subnet $SUB
 $NIC = New-AzNetworkInterface `
     -Name dc1-nic2 `
-    -ResourceGroupName w19 `
-    -Location EastUS `
+    -ResourceGroupName $resourcegroup `
+    -Location $location `
     -IpConfiguration $IP 
 
 $SG = Get-AzNetworkSecurityGroup `
     -Name priv-sg `
-    -ResourceGroupName w19 
+    -ResourceGroupName $resourcegroup 
 
 $NIC.NetworkSecurityGroup = $SG
 

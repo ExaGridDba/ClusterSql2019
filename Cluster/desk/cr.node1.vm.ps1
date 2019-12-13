@@ -1,6 +1,6 @@
 ﻿$nodename = node1
 $ASET = Get-AzAvailabilitySet `
-    -ResourceGroupName w19 `
+    -ResourceGroupName $resourcegroup `
     -Name clus-aset
 
 $VM = New-AzVMConfig `
@@ -21,14 +21,14 @@ $VM | Set-AzVMOperatingSystem `
     -EnableAutoUpdate
 
 $NIC1 = Get-AzNetworkInterface `
-    -ResourceGroupName w19 `
+    -ResourceGroupName $resourcegroup `
     -Name ('{0}-nic1' -f $nodename)
 $VM | Add-AzVMNetworkInterface `
     -Primary `
     -Id $NIC1.id
 
 $NIC2 = Get-AzNetworkInterface `
-    -ResourceGroupName w19 `
+    -ResourceGroupName $resourcegroup `
     -Name ('{0}-nic2' -f $nodename)
 $VM | Add-AzVMNetworkInterface `
     -Id $NIC2.id
@@ -48,7 +48,7 @@ foreach ($dn in 1,2,3)
     $diskname = ('{0}-disk{1}' -f $nodename,$dn)
     $DISK = Get-AzDisk `
         -DiskName $diskname `
-        -ResourceGroupName w19
+        -ResourceGroupName $resourcegroup
     $VM | Add-AzVMDataDisk `
         -Name $diskname `
         -CreateOption Attach `
@@ -57,7 +57,7 @@ foreach ($dn in 1,2,3)
         -Lun $ln
 }
 
-New-AzVM -ResourceGroupName w19 `
+New-AzVM -ResourceGroupName $resourcegroup `
     -AsJob `
-    -Location EastUS `
+    -Location $location `
     -VM $VM

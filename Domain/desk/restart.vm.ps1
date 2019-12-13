@@ -1,2 +1,2 @@
 ﻿Restart-AzVM `
-    -ResourceGroupName w19
+    -ResourceGroupName $resourcegroup

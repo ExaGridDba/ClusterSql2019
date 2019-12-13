@@ -1,6 +1,6 @@
 ﻿New-AzStorageAccount `
-    -ResourceGroupName w19 `
+    -ResourceGroupName $resourcegroup `
     -Name witns `
-    -Location EastUS `
+    -Location $location `
     -SkuName Standard_RAGRS `
     -Kind StorageV2

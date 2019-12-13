@@ -1,34 +1,35 @@
-﻿$ASET = Get-AzAvailabilitySet `
-    -ResourceGroupName w19 `
+﻿$nodename = dc1
+$ASET = Get-AzAvailabilitySet `
+    -ResourceGroupName $resourcegroup `
     -Name dc-aset
 
 $VM = New-AzVMConfig `
-    -VMName dc1 `
+    -VMName $nodename `
     -VMSize Standard_DS1_v2 `
     -AvailabilitySetID $ASET.Id
 
 $VM | Set-AzVMOSDisk `
-    -Name dc1-osdisk `
+    -Name ('{0}-osdisk' -f $nodename) `
     -StorageAccountType Standard_LRS `
     -CreateOption FromImage
 
 $VM | Set-AzVMOperatingSystem `
     -Credential $CRED `
     -Windows `
-    -ComputerName dc1 `
+    -ComputerName $nodename `
     -ProvisionVMAgent `
     -EnableAutoUpdate
 
 $NIC1 = Get-AzNetworkInterface `
-    -ResourceGroupName w19 `
-    -Name dc1-nic1
+    -ResourceGroupName $resourcegroup `
+    -Name ('{0}-nic1' -f $nodename)
 $VM | Add-AzVMNetworkInterface `
     -Primary `
     -Id $NIC1.id
 
 $NIC2 = Get-AzNetworkInterface `
-    -ResourceGroupName w19 `
-    -Name dc1-nic2
+    -ResourceGroupName $resourcegroup `
+    -Name ('{0}-nic2' -f $nodename)
 $VM | Add-AzVMNetworkInterface `
     -Id $NIC2.id
 
@@ -41,7 +42,7 @@ $VM | Set-AzVMSourceImage `
 $VM | Set-AzVMBootDiagnostic `
     -Disable
 
-New-AzVM -ResourceGroupName w19 `
+New-AzVM -ResourceGroupName $resourcegroup `
     -AsJob `
-    -Location EastUS `
+    -Location $location `
     -VM $VM

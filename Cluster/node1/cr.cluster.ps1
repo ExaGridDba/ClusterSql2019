@@ -1,4 +1,4 @@
 ﻿New-Cluster `
-    -Name w19-clus `
+    -Name $resourcegroup-clus `
     -S2D `
     -Node node1,node2
