@@ -1,12 +1,8 @@
-﻿$nodename = 'aesk'
-$ASET = Get-AzAvailabilitySet `
-    -ResourceGroupName $resourcegroup `
-    -Name clus-aset
+﻿$nodename = 'desk'
 
 $VM = New-AzVMConfig `
     -VMName $nodename `
-    -VMSize Standard_D2_v2 `
-    -AvailabilitySetID $ASET.Id
+    -VMSize Standard_D2_v2
 
 $VM | Set-AzVMOSDisk `
     -Name ('{0}-osdisk' -f $nodename) `
@@ -40,4 +36,3 @@ New-AzVM -ResourceGroupName $resourcegroup `
     -Location $location `
     -AsJob `
     -VM $VM
-

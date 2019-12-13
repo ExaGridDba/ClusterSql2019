@@ -1,1 +1,2 @@
-﻿$CRED = Get-Credential
+﻿$CRED = Get-Credential `
+    -Credential adminusr

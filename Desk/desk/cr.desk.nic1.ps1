@@ -1,4 +1,4 @@
-﻿$nodename = 'aesk'
+﻿$nodename = 'desk'
 $VN = Get-AzVirtualNetwork `
     -Name vnet `
     -ResourceGroupName $resourcegroup

@@ -1,4 +1,4 @@
-﻿$nodename = 'aesk'
+﻿$nodename = 'desk'
 New-AzPublicIpAddress `
     -Name ('{0}-pubip' -f $nodename) `
     -ResourceGroupName $resourcegroup `
