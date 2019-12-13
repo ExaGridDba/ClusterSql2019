@@ -1,2 +1,2 @@
 ﻿$location = 'EastUS'
-$resourcegroup = 'w19'
+$resourcegroup = 'desk'
