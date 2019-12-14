@@ -1,2 +1,4 @@
-﻿ Add-WindowsFeature AD-Domain-Services `
-    -IncludeManagementTools
+﻿Add-WindowsFeature AD-Domain-Services `
+    -IncludeManagementTools 
+
+Restart-Computer

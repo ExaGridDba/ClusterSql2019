@@ -1,4 +1,4 @@
-﻿$nodename = node1
+﻿$nodename = 'node1'
 $ASET = Get-AzAvailabilitySet `
     -ResourceGroupName $resourcegroup `
     -Name clus-aset

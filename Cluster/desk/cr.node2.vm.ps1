@@ -1,34 +1,35 @@
-﻿$ASET = Get-AzAvailabilitySet `
+﻿$nodename = 'node2'
+$ASET = Get-AzAvailabilitySet `
     -ResourceGroupName $resourcegroup `
     -Name clus-aset
 
 $VM = New-AzVMConfig `
-    -VMName node2 `
+    -VMName $nodename `
     -VMSize Standard_DS2_v2 `
     -AvailabilitySetID $ASET.Id
 
 $VM | Set-AzVMOSDisk `
-    -Name node2-osdisk `
+    -Name ('{0}-osdisk' -f $nodename) `
     -StorageAccountType Standard_LRS `
     -CreateOption FromImage
 
 $VM | Set-AzVMOperatingSystem `
     -Credential $CRED `
     -Windows `
-    -ComputerName node2 `
+    -ComputerName $nodename `
     -ProvisionVMAgent `
     -EnableAutoUpdate
 
 $NIC1 = Get-AzNetworkInterface `
     -ResourceGroupName $resourcegroup `
-    -Name node2-nic1
+    -Name ('{0}-nic1' -f $nodename)
 $VM | Add-AzVMNetworkInterface `
     -Primary `
     -Id $NIC1.id
 
 $NIC2 = Get-AzNetworkInterface `
     -ResourceGroupName $resourcegroup `
-    -Name node2-nic2
+    -Name ('{0}-nic2' -f $nodename)
 $VM | Add-AzVMNetworkInterface `
     -Id $NIC2.id
 
@@ -41,35 +42,20 @@ $VM | Set-AzVMSourceImage `
 $VM | Set-AzVMBootDiagnostic `
     -Disable
 
-$DISK1 = Get-AzDisk `
-    -DiskName node2-disk1 `
-    -ResourceGroupName $resourcegroup
-$VM | Add-AzVMDataDisk `
-    -Name node2-disk1 `
-    -CreateOption Attach `
-    -Caching 'ReadOnly' `
-    -ManagedDiskId $DISK1.Id `
-    -Lun 0
-
-$DISK2 = Get-AzDisk `
-    -DiskName node2-disk2 `
-    -ResourceGroupName $resourcegroup
-$VM | Add-AzVMDataDisk `
-    -Name node2-disk2 `
-    -CreateOption Attach `
-    -Caching 'ReadOnly' `
-    -ManagedDiskId $DISK2.Id `
-    -Lun 1
-
-$DISK3 = Get-AzDisk `
-    -DiskName node2-disk3 `
-    -ResourceGroupName $resourcegroup
-$VM | Add-AzVMDataDisk `
-    -Name node2-disk3 `
-    -CreateOption Attach `
-    -Caching 'ReadOnly' `
-    -ManagedDiskId $DISK3.Id `
-    -Lun 2
+foreach ($dn in 1,2,3)
+{
+    $ln = $dn - 1    
+    $diskname = ('{0}-disk{1}' -f $nodename,$dn)
+    $DISK = Get-AzDisk `
+        -DiskName $diskname `
+        -ResourceGroupName $resourcegroup
+    $VM | Add-AzVMDataDisk `
+        -Name $diskname `
+        -CreateOption Attach `
+        -Caching 'ReadOnly' `
+        -ManagedDiskId $DISK.Id `
+        -Lun $ln
+}
 
 New-AzVM -ResourceGroupName $resourcegroup `
     -AsJob `

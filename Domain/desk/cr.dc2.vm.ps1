@@ -1,34 +1,35 @@
-﻿$ASET = Get-AzAvailabilitySet `
+﻿$nodename = 'dc2'
+$ASET = Get-AzAvailabilitySet `
     -ResourceGroupName $resourcegroup `
     -Name dc-aset
 
 $VM = New-AzVMConfig `
-    -VMName dc2 `
+    -VMName $nodename `
     -VMSize Standard_DS1_v2 `
     -AvailabilitySetID $ASET.Id
 
 $VM | Set-AzVMOSDisk `
-    -Name dc2-osdisk `
+    -Name ('{0}-osdisk' -f $nodename) `
     -StorageAccountType Standard_LRS `
     -CreateOption FromImage
 
 $VM | Set-AzVMOperatingSystem `
     -Credential $CRED `
     -Windows `
-    -ComputerName dc2 `
+    -ComputerName $nodename `
     -ProvisionVMAgent `
     -EnableAutoUpdate
 
 $NIC1 = Get-AzNetworkInterface `
     -ResourceGroupName $resourcegroup `
-    -Name dc2-nic1
+    -Name ('{0}-nic1' -f $nodename)
 $VM | Add-AzVMNetworkInterface `
     -Primary `
     -Id $NIC1.id
 
 $NIC2 = Get-AzNetworkInterface `
     -ResourceGroupName $resourcegroup `
-    -Name dc2-nic2
+    -Name ('{0}-nic2' -f $nodename)
 $VM | Add-AzVMNetworkInterface `
     -Id $NIC2.id
 

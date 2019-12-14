@@ -1,4 +1,4 @@
-﻿$nodename = dc1
+﻿$nodename = 'dc1'
 $ASET = Get-AzAvailabilitySet `
     -ResourceGroupName $resourcegroup `
     -Name dc-aset
