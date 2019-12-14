@@ -1,4 +1,5 @@
-﻿$nodename = 'dc2'
+﻿Set-Strictmode -Version Latest
+$nodename = 'dc2'
 $ASET = Get-AzAvailabilitySet `
     -ResourceGroupName $resourcegroup `
     -Name dc-aset
