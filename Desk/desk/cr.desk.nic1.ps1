@@ -1,6 +1,6 @@
 ﻿$nodename = 'desk'
 $VN = Get-AzVirtualNetwork `
-    -Name vnet `
+    -Name desk `
     -ResourceGroupName $resourcegroup
 
 $SUB = Get-AzVirtualNetworkSubnetConfig `
