@@ -2,5 +2,5 @@
     -ResourceGroupName $resourcegroup `
     -Name witns `
     -Location $location `
-    -SkuName Standard_RAGRS `
+    -SkuName Standard_LRS `
     -Kind StorageV2
