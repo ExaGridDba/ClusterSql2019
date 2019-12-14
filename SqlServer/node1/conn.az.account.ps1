@@ -1,1 +1,2 @@
-﻿Connect-AzAccount -UseDeviceAuthentication
+﻿Connect-AzAccount `
+    -UseDeviceAuthentication

@@ -1,1 +1,3 @@
-﻿Install-Module -Name Az -Force
+﻿Install-Module `
+    -Name Az `
+    -Force

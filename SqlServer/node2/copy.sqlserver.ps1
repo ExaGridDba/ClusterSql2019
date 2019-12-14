@@ -8,4 +8,5 @@ $dest = 'Downloads\'
 
 Copy-Item -Path $src `
     -Destination $dest `
-    -Recurse -Force
+    -Recurse `
+    -Force
