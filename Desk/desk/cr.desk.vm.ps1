@@ -1,5 +1,5 @@
-﻿$nodename = 'desk'
-
+﻿Set-Strictmode -Version Latest
+$nodename = 'desk'
 $VM = New-AzVMConfig `
     -VMName $nodename `
     -VMSize Standard_D2_v2

@@ -1,4 +1,4 @@
-﻿Set-strictmode -version latest
+﻿Set-Strictmode -Version Latest
 New-Cluster `
     -Name $resourcegroup-clus `
     -S2D `

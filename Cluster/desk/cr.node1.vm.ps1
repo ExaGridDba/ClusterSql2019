@@ -1,4 +1,5 @@
-﻿$nodename = 'node1'
+﻿Set-Strictmode -Version Latest
+$nodename = 'node1'
 $ASET = Get-AzAvailabilitySet `
     -ResourceGroupName $resourcegroup `
     -Name clus-aset
