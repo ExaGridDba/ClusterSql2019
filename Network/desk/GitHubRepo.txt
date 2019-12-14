@@ -1,0 +1,3 @@
+﻿The scripts for this video series are available at:
+
+https://github.com/ExaGridDba/ClusterSql2019.git
