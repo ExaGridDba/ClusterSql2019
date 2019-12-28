@@ -6,7 +6,7 @@ $CX = New-AzStorageContext `
     -StorageAccountName blobstorg `
     -StorageAccountKey $SK
 
-$buck = 'microsoft/sqlserver/2019/'    
+$dir = 'microsoft/sqlserver/2019/'    
 $base = 'SQLServer2019-x64-ENU' 
 $dest = 'Downloads/'
 
@@ -16,7 +16,7 @@ foreach ($suf in $sufs)
     $file = ( $base + $suf )                       
     Get-AzStorageBlobContent `
         -Container download `
-        -Blob ( $buck + $file ) `
+        -Blob ( $dir + $file ) `
         -Destination 'Downloads\' `
         -Context $CX `
         -Force
