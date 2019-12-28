@@ -1,4 +1,5 @@
-﻿New-AzStorageAccount `
+﻿Set-Strictmode -Version Latest
+New-AzStorageAccount `
     -ResourceGroupName $resourcegroup `
     -Name witns `
     -Location $location `

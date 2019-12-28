@@ -1,4 +1,5 @@
-﻿New-AzAvailabilitySet `
+﻿Set-Strictmode -Version Latest
+New-AzAvailabilitySet `
     -ResourceGroupName $resourcegroup `
     -Name clus-aset `
     -PlatformFaultDomainCount 2 `

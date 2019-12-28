@@ -1,4 +1,5 @@
-﻿$SG = New-AzNetworkSecurityGroup `
+﻿Set-Strictmode -Version Latest
+$SG = New-AzNetworkSecurityGroup `
     -Name pub-sg `
     -ResourceGroupName $resourcegroup `
     -Location $location

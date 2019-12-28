@@ -1,4 +1,5 @@
-﻿$DISK = New-AzDiskConfig `
+﻿Set-Strictmode -Version Latest
+$DISK = New-AzDiskConfig `
     -Location $location `
     -CreateOption Empty `
     -SkuName Standard_LRS `

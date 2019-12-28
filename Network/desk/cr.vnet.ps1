@@ -1,4 +1,5 @@
-﻿$VN = New-AzVirtualNetwork `
+﻿Set-Strictmode -Version Latest
+$VN = New-AzVirtualNetwork `
     -ResourceGroupName $resourcegroup `
     -Location $location `
     -Name vnet `
