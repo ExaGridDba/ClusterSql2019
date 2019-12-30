@@ -13,8 +13,4 @@ $VN | Add-AzVirtualNetworkSubnetConfig `
     -Name sub2 `
     -AddressPrefix 10.0.1.0/24
 
-$VN | Add-AzVirtualNetworkSubnetConfig `
-    -Name AzureBastionSubnet `
-    -AddressPrefix 10.0.2.0/24
-
 $VN | Set-AzVirtualNetwork
