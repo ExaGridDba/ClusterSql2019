@@ -1,2 +1,2 @@
 ﻿$CRED = Get-Credential `
-    -Credential adminusr
+    -Credential domadm
