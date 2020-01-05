@@ -4,4 +4,4 @@
 
 Add-ADGroupMember `
     -Identity DBA `
-    -Members sqlagent,sqlserver
+    -Members sqlagent,sqlserver,brian.fitzgerald
